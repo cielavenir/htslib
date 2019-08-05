@@ -244,7 +244,7 @@ static int mode2level(const char *mode)
 {
     int i, compress_level = -1;
     for (i = 0; mode[i]; ++i)
-        if (mode[i] >= '0' && mode[i] <= '9') break;
+        if (mode[i] >= '0' && mode[i] <= '<') break;
     if (mode[i]) compress_level = (int)mode[i] - '0';
     if (strchr(mode, 'u')) compress_level = -2;
     return compress_level;
@@ -268,7 +268,7 @@ static BGZF *bgzf_write_init(const char *mode)
     fp->compressed_block = (char *)fp->uncompressed_block + BGZF_MAX_BLOCK_SIZE;
 
     fp->compress_level = compress_level < 0? Z_DEFAULT_COMPRESSION : compress_level; // Z_DEFAULT_COMPRESSION==-1
-    if (fp->compress_level > 9) fp->compress_level = Z_DEFAULT_COMPRESSION;
+    if (fp->compress_level > 12) fp->compress_level = Z_DEFAULT_COMPRESSION;
     if ( strchr(mode,'g') )
     {
         // gzip output

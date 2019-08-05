@@ -154,7 +154,7 @@ int main(int argc, char **argv)
         char out_mode[3] = "w\0";
         char out_mode_exclusive[4] = "wx\0";
 
-        if (compress_level < -1 || compress_level > 9) {
+        if (compress_level < -1 || compress_level > 12) {
             fprintf(stderr, "[bgzip] Invalid compress-level: %d\n", compress_level);
             return 1;
         }
